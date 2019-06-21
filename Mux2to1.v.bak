@@ -1,0 +1,11 @@
+module Mux_2to1(A, B, S, O);
+	input [15:0] A, B;
+	input S;
+	output O;
+	reg [15:0] O;
+always @(A or B or S)
+	if (S == 1'b0)
+		O = A;
+	else
+		O = B;
+endmodule 
