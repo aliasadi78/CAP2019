@@ -7,101 +7,134 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-dC:/modeltech64_10.5/examples
+Z0 dC:/modeltech64_10.5/examples
 T_opt
 !s110 1561119824
 V6Kcl7kjE9;UQzLiW^=Cnm2
 04 10 4 work Signextend fast 0
 =1-ac220bb532b4-5d0ccc4e-2b4-2850
-o-quiet -auto_acc_if_foreign -work work
-Z0 tCvgOpt 0
+Z1 o-quiet -auto_acc_if_foreign -work work
+Z2 tCvgOpt 0
 n@_opt
-OL;O;10.5;63
+Z3 OL;O;10.5;63
+R0
+T_opt1
+!s110 1561127659
+VHgXZ[ck01Nk?@GK0mFlWZ3
+04 9 4 work ShiftLeft fast 0
+=1-ac220bb532b4-5d0ceaeb-192-1f04
+R1
+R2
+n@_opt1
+R3
+R0
 vMemory
-Z1 !s110 1561119796
+Z4 !s110 1561119796
 !i10b 1
 !s100 TTTVbG;g<JODiOVhDddm[0
 I1f_kLeaFTkc1ZjZekM[kC2
-Z2 VDg1SIo80bB@j0V0VzS_@n1
-Z3 dC:/Users/Ali Asadi/Desktop/CAP2019
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 dC:/Users/Ali Asadi/Desktop/CAP2019
 w1561064882
 8C:/Users/Ali Asadi/Desktop/CAP2019/Memory.v
 FC:/Users/Ali Asadi/Desktop/CAP2019/Memory.v
 L0 1
-Z4 OL;L;10.5;63
+Z7 OL;L;10.5;63
 r1
 !s85 0
 31
-Z5 !s108 1561119796.000000
+Z8 !s108 1561119796.000000
 !s107 C:/Users/Ali Asadi/Desktop/CAP2019/Memory.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/Ali Asadi/Desktop/CAP2019/Memory.v|
 !i113 0
-Z6 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-R0
+Z9 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
 n@memory
 vMux_2to1
-R1
+R4
 !i10b 1
 !s100 kiHZ@MLK;k<^gXA6mS`K;2
 IfJn^e8VQ3R@DiSMaGgHcS0
-R2
-R3
+R5
+R6
 w1561106912
 8C:/Users/Ali Asadi/Desktop/CAP2019/Mux2to1.v
 FC:/Users/Ali Asadi/Desktop/CAP2019/Mux2to1.v
 L0 1
-R4
+R7
 r1
 !s85 0
 31
-R5
+R8
 !s107 C:/Users/Ali Asadi/Desktop/CAP2019/Mux2to1.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/Ali Asadi/Desktop/CAP2019/Mux2to1.v|
 !i113 0
-R6
-R0
+R9
+R2
 n@mux_2to1
 vMux_3to1
-R1
+R4
 !i10b 1
 !s100 ;7V@abUa<l[K_Om@6nMS32
 ITJk5m>E2<`:;J89VB5[3?1
-R2
-R3
+R5
+R6
 w1561115878
 8C:/Users/Ali Asadi/Desktop/CAP2019/mux3to1.v
 FC:/Users/Ali Asadi/Desktop/CAP2019/mux3to1.v
 L0 1
-R4
+R7
 r1
 !s85 0
 31
-R5
+R8
 !s107 C:/Users/Ali Asadi/Desktop/CAP2019/mux3to1.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/Ali Asadi/Desktop/CAP2019/mux3to1.v|
 !i113 0
-R6
-R0
+R9
+R2
 n@mux_3to1
+vShiftLeft
+!s110 1561131052
+!i10b 1
+!s100 J@TMW:`HVlJK6eR0<LHPT3
+IiOzIZznP6F^4>z<Yea1;e1
+R5
+R6
+w1561131047
+8C:/Users/Ali Asadi/Desktop/CAP2019/shiftleft.v
+FC:/Users/Ali Asadi/Desktop/CAP2019/shiftleft.v
+L0 1
+R7
+r1
+!s85 0
+31
+!s108 1561131052.000000
+!s107 C:/Users/Ali Asadi/Desktop/CAP2019/shiftleft.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/Ali Asadi/Desktop/CAP2019/shiftleft.v|
+!i113 0
+R9
+R2
+n@shift@left
 vSignextend
-!s110 1561119797
+!s110 1561127640
 !i10b 1
 !s100 Hz]9LozYohPjS;KR9VW@a3
 Ii=gJZa24Qh;>ooYEb7U[A0
-R2
-R3
+R5
+R6
 w1561119669
 8C:/Users/Ali Asadi/Desktop/CAP2019/signextend.v
 FC:/Users/Ali Asadi/Desktop/CAP2019/signextend.v
 L0 3
-R4
+R7
 r1
 !s85 0
 31
-!s108 1561119797.000000
+!s108 1561127640.000000
 !s107 C:/Users/Ali Asadi/Desktop/CAP2019/signextend.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/Ali Asadi/Desktop/CAP2019/signextend.v|
 !i113 0
-R6
-R0
+R9
+R2
 n@signextend
