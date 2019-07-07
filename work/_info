@@ -8,25 +8,267 @@ z2
 !i10f 100
 cModel Technology
 dC:/modeltech64_10.5/examples
+vALU
+!s110 1562415028
+!i10b 1
+!s100 PCi;Jz60D^m]W;AnIcJ0a0
+I8U7zThEM5MRNgld>lFa`o1
+Z0 VDg1SIo80bB@j0V0VzS_@n1
+Z1 dC:/Users/asus/Desktop/CAP2019
+w1562415022
+8C:/Users/asus/Desktop/alu.v
+FC:/Users/asus/Desktop/alu.v
+L0 1
+Z2 OL;L;10.5;63
+r1
+!s85 0
+31
+!s108 1562415028.000000
+!s107 C:/Users/asus/Desktop/alu.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/alu.v|
+!i113 0
+Z3 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z4 tCvgOpt 0
+n@a@l@u
+vController
+!s110 1562496538
+!i10b 1
+!s100 EFLL3UGh8[>^D98PQ^G483
+IiC95Fl?AWJmVjB6ZHP8>U3
+R0
+R1
+w1562496535
+8C:/Users/asus/Desktop/CAP2019/Controller.v
+FC:/Users/asus/Desktop/CAP2019/Controller.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562496538.000000
+!s107 C:/Users/asus/Desktop/CAP2019/Controller.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/Controller.v|
+!i113 0
+R3
+R4
+n@controller
+vEX2MEM
+!s110 1562477177
+!i10b 1
+!s100 c<TEJCidIZSSih42KISef0
+IindkeW<19J4WPb83J7MK<3
+R0
+R1
+w1562477166
+Z5 8C:/Users/asus/Desktop/CAP2019/EX2MEM.v
+Z6 FC:/Users/asus/Desktop/CAP2019/EX2MEM.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562477177.000000
+Z7 !s107 C:/Users/asus/Desktop/CAP2019/EX2MEM.v|
+Z8 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/EX2MEM.v|
+!i113 0
+R3
+R4
+n@e@x2@m@e@m
+vEX2MEM_register
+!s110 1562477344
+!i10b 1
+!s100 [2l><fD`]JaG@GoQa^Na53
+IKZTIK2Q;i7fUJUn:GlW;F2
+R0
+R1
+w1562477342
+R5
+R6
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562477344.000000
+R7
+R8
+!i113 0
+R3
+R4
+n@e@x2@m@e@m_register
+vForwarding
+!s110 1562390992
+!i10b 1
+!s100 8MORTWVYl9fH1N1`A6cS_3
+Iam;XcDAJl<^P:hOYGfSS;3
+R0
+R1
+w1562390990
+8C:/Users/asus/Desktop/CAP2019/Forwarding.v
+FC:/Users/asus/Desktop/CAP2019/Forwarding.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562390992.000000
+!s107 C:/Users/asus/Desktop/CAP2019/Forwarding.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/Forwarding.v|
+!i113 0
+R3
+R4
+n@forwarding
+vHazard_Detection_Unit
+!s110 1562495037
+!i10b 1
+!s100 WSdJYB`BMDE@O<=hoIgE80
+IL7B`_R8]mCZe^N6ZOU0kE2
+R0
+R1
+w1562495035
+8C:/Users/asus/Desktop/CAP2019/Hazard_Detection_Unit.v
+FC:/Users/asus/Desktop/CAP2019/Hazard_Detection_Unit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562495037.000000
+!s107 C:/Users/asus/Desktop/CAP2019/Hazard_Detection_Unit.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/Hazard_Detection_Unit.v|
+!i113 0
+R3
+R4
+n@hazard_@detection_@unit
+vID2EX_Register
+!s110 1562400911
+!i10b 1
+!s100 6gm0hRQ5mlo4W^9LLO2;[3
+I3Ga?Yl^?XEFUn33T?fIac3
+R0
+R1
+w1562400381
+8C:/Users/asus/Desktop/CAP2019/ID2EX_Register.v
+FC:/Users/asus/Desktop/CAP2019/ID2EX_Register.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562400911.000000
+!s107 C:/Users/asus/Desktop/CAP2019/ID2EX_Register.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/ID2EX_Register.v|
+!i113 0
+R3
+R4
+n@i@d2@e@x_@register
+vIF2ID_Register
+!s110 1562400958
+!i10b 1
+!s100 ;CO7Zmla]nXE0WFWgS@nF1
+I3>fG_896QKkdl>`<[z_GI0
+R0
+R1
+w1562400956
+8C:/Users/asus/Desktop/CAP2019/IF2ID_Register.v
+FC:/Users/asus/Desktop/CAP2019/IF2ID_Register.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562400958.000000
+!s107 C:/Users/asus/Desktop/CAP2019/IF2ID_Register.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/IF2ID_Register.v|
+!i113 0
+R3
+R4
+n@i@f2@i@d_@register
+vMEM2WB_register
+!s110 1562478389
+!i10b 1
+!s100 TJ_BgRKOTa2Wgln?FYi:X2
+IRCP]5_i4iABTbzaoP4KHh2
+R0
+R1
+w1562478380
+8C:/Users/asus/Desktop/CAP2019/MEM2WB.v
+FC:/Users/asus/Desktop/CAP2019/MEM2WB.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562478389.000000
+!s107 C:/Users/asus/Desktop/CAP2019/MEM2WB.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/MEM2WB.v|
+!i113 0
+R3
+R4
+n@m@e@m2@w@b_register
 vMemory
-!s110 1560941557
+!s110 1562412295
 !i10b 1
 !s100 TTTVbG;g<JODiOVhDddm[0
 IHXllTY:Ljj1A6Ye:Xc3C@3
-VDg1SIo80bB@j0V0VzS_@n1
-dC:/Users/asus/Desktop/CAP2019
+R0
+R1
 w1560941555
 8C:/Users/asus/Desktop/CAP2019/Memory.v
 FC:/Users/asus/Desktop/CAP2019/Memory.v
 L0 1
-OL;L;10.5;63
+R2
 r1
 !s85 0
 31
-!s108 1560941557.000000
+!s108 1562412295.000000
 !s107 C:/Users/asus/Desktop/CAP2019/Memory.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/Memory.v|
 !i113 0
-o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-tCvgOpt 0
+R3
+R4
 n@memory
+vPC
+!s110 1562392757
+!i10b 1
+!s100 d=A>l][@5joFNAL0n0KM]3
+I0=:z;ORe=U7V034CVWElz2
+R0
+R1
+w1562392753
+8C:/Users/asus/Desktop/CAP2019/PC.v
+FC:/Users/asus/Desktop/CAP2019/PC.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562392757.000000
+!s107 C:/Users/asus/Desktop/CAP2019/PC.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/PC.v|
+!i113 0
+R3
+R4
+n@p@c
+vStructureHazard_Unit
+!s110 1562481641
+!i10b 1
+!s100 mV4m4EYIfbH4D^9QIKk0_0
+Il`O30B:;;@Dj2D<8RcHWY3
+R0
+R1
+w1562480465
+8C:/Users/asus/Desktop/CAP2019/StructureHazard_unit.v
+FC:/Users/asus/Desktop/CAP2019/StructureHazard_unit.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1562481641.000000
+!s107 C:/Users/asus/Desktop/CAP2019/StructureHazard_unit.v|
+!s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/asus/Desktop/CAP2019/StructureHazard_unit.v|
+!i113 0
+R3
+R4
+n@structure@hazard_@unit
