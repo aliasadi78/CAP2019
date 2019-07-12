@@ -1,8 +1,11 @@
-module ShiftLeft (rest , A, Out);
-	input rest ;
-	input [15:0] A;
-	output [15:0] Out;
+module ShiftLeft(in, out);
+	input [15:0] in;
+	output [15:0] out;
+	reg [15:0] Out;
+assign out = Out;
 
-assign Out = A<<1;
-
+always @(in, out)
+	begin
+		Out = {in[13:0], 2'b00};
+	end
 endmodule
