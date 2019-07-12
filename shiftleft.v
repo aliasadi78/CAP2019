@@ -6,6 +6,6 @@ assign out = Out;
 
 always @(in, out)
 	begin
-		Out = {in[13:0], 2'b00};
+		Out = in << 1;
 	end
 endmodule
