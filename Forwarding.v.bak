@@ -1,5 +1,5 @@
-module Forwarding(rest , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd , EXMEM_Register_RegWrite , MEMWB_Register_Rd , MEMWB_Register_RegWrite ,LW ,LWi ,SW , SWi ,Add, ForwardA , ForwardB);
-	input rest , MEMWB_Register_RegWrite , EXMEM_Register_RegWrite ,LW ,LWi ,SW , SWi ,Add ;
+module Forwarding(rest , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd , EXMEM_Register_RegWrite , MEMWB_Register_Rd , MEMWB_Register_RegWrite ,IDEXMemRead , IDEXMemWrite, ForwardA , ForwardB);
+	input rest , MEMWB_Register_RegWrite , EXMEM_Register_RegWrite ,IDEXMemRead , IDEXMemWrite;
 	input [3:0] IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd , MEMWB_Register_Rd ;
 	output [1:0] ForwardA , ForwardB ;
 
@@ -8,7 +8,7 @@ module Forwarding(rest , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd
 	assign ForwardA= ForwardA_Register ;
 	assign ForwardB= ForwardB_Register ;
 
-	always @(rest , MEMWB_Register_RegWrite , EXMEM_Register_RegWrite ,LW ,LWi ,SW , SWi ,Add , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd , MEMWB_Register_Rd) begin 
+	always @(rest , MEMWB_Register_RegWrite , EXMEM_Register_RegWrite ,IDEXMemRead , IDEXMemWrite , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd , MEMWB_Register_Rd) begin 
 		ForwardA_Register <= 2 ;
 		ForwardB_Register <= 2 ;
 		if (rest) begin 
@@ -19,7 +19,7 @@ module Forwarding(rest , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd
 			if (MEMWB_Register_RegWrite && MEMWB_Register_Rd != 0 ) begin 
 				if (IDEX_Register_Rd == MEMWB_Register_Rd)
 					ForwardA_Register <= 1 ;
-				if (MEMWB_Register_Rd == 10 && (LW || LWi || SW || SWi || Add)) 
+				if (MEMWB_Register_Rd == 10 && (IDEXMemRead || IDEXMemWrite)) 
 					ForwardA_Register <= 1 ;
 				if (IDEX_Register_Rt == MEMWB_Register_Rd)
 					ForwardB_Register <= 1 ;
@@ -27,7 +27,7 @@ module Forwarding(rest , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd
 			if (EXMEM_Register_RegWrite && EXMEM_Register_Rd != 0 ) begin 
 				if (IDEX_Register_Rd == EXMEM_Register_Rd)
 					ForwardA_Register <= 0 ; 
-				if (IDEX_Register_Rd == 10 && (LW || LWi || SW || SWi || Add)) 
+				if (IDEX_Register_Rd == 10 && (IDEXMemRead || IDEXMemWrite)) 
 					ForwardA_Register <= 0 ;
 				if (IDEX_Register_Rt == EXMEM_Register_Rd)
 					ForwardB_Register <= 0 ;

@@ -1,5 +1,5 @@
 module PC(clk , rest , PC_In , PC_Out , Freze);
-	input clk , rest , Freze ;
+	input clk , rest , Freze;
 	input [15:0] PC_In ;
 	output [15:0] PC_Out ;
 	

@@ -8,7 +8,7 @@ module Forwarding(rest , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd
 	assign ForwardA= ForwardA_Register ;
 	assign ForwardB= ForwardB_Register ;
 
-	always @(rest , MEMWB_Register_RegWrite , EXMEM_Register_RegWrite ,IDEXMemRead , IDEXMemWrite , IDEX_Register_Rd , IDEX_Register_Rt , EXMEM_Register_Rd , MEMWB_Register_Rd) begin 
+	always @(rest or MEMWB_Register_RegWrite or EXMEM_Register_RegWrite or IDEXMemRead or IDEXMemWrite or IDEX_Register_Rd or IDEX_Register_Rt or EXMEM_Register_Rd or MEMWB_Register_Rd) begin 
 		ForwardA_Register <= 2 ;
 		ForwardB_Register <= 2 ;
 		if (rest) begin 

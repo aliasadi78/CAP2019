@@ -1,6 +1,6 @@
-module StructureHazard_Unit(LWi , SWi , Add ,MemRead , MemWrite , ControllSignals , AluResultMux , FrezePC , FrezeIFID , FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB);
+module StructureHazard_Unit(rest , LWi , SWi , Add ,MemRead , MemWrite , ControllSignals , AluResultMux , FrezePC , FrezeIFID , FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB);
 
-	input LWi , SWi , Add , MemRead , MemWrite ; 
+	input rest , LWi , SWi , Add , MemRead , MemWrite ; 
 	output [1:0] ControllSignals ; 
 	output AluResultMux , FrezePC , FrezeIFID, FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB ; 
 
@@ -17,8 +17,16 @@ module StructureHazard_Unit(LWi , SWi , Add ,MemRead , MemWrite , ControllSignal
 	assign SpecialChangeEXMEM = SpecialChangeEXMEM_register ;
 	assign FrezeMEMWB = FrezeMEMWB_register ; 
 
-	always @(LWi , SWi , Add , MemRead , MemWrite) begin 
-
+	always @(rest or LWi or SWi or Add or MemRead or MemWrite) begin 
+	if (rest) begin 
+		ControllSignals_register <= 3 ;
+		AluResultMux_register <= 1 ;
+		FrezePC_register <= 0 ;
+		FrezeIFID_register <= 0 ;
+		FrezeIDEX_register <= 0 ;
+		SpecialChangeEXMEM_register <= 0 ;
+		FrezeMEMWB_register <= 0 ;
+	end else begin 
 		if (LWi)
 			ControllSignals_register <= 2 ;
 		else if (SWi)
@@ -50,7 +58,7 @@ module StructureHazard_Unit(LWi , SWi , Add ,MemRead , MemWrite , ControllSignal
 			FrezePC_register <= 0 ;
 			FlushIFID_register <= 0 ;
 		end
-
+	end
 	end 
 
 endmodule 

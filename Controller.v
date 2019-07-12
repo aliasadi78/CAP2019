@@ -8,14 +8,14 @@ module Controller( Op_Code, Controll_Signals);
 	assign Controll_Signals = Controll_Signals_register;
 
 	always @(Op_Code) begin
-		if(Op_Code == 4'b0001 || Op_Code == 4'b0111 || Op_Code == 4'b1000 || Op_Code == 4'b1001 || Op_Code == 4'b1010)
+		if(Op_Code == 4'b0001 || Op_Code == 4'b0100 || Op_Code == 4'b0111 || Op_Code == 4'b1000 || Op_Code == 4'b1001 || Op_Code == 4'b1010)
 			Controll_Signals_register[15] <= 1;
 		else 
 			Controll_Signals_register[15] <= 0;
 
 		if(Op_Code == 4'b0011 || Op_Code == 4'b0110 || Op_Code == 4'b1000 || Op_Code == 4'b1001 || Op_Code == 4'b1010)
 			Controll_Signals_register[14:13] <= 0;
-		else if (Op_Code == 4'b0000 || Op_Code == 4'b0010 || Op_Code == 4'b0101) 
+		else if (Op_Code == 4'b0000 || Op_Code == 4'b0010 || Op_Code == 4'b0100 || Op_Code == 4'b0101 || Op_Code == 4'b1101) 
 			Controll_Signals_register[14:13] <= 2;
 		else 
 			Controll_Signals_register[14:13] <= 1;
@@ -30,7 +30,7 @@ module Controller( Op_Code, Controll_Signals);
 		else 
 			Controll_Signals_register[11] <= 0;
 
-		if(Op_Code == 4'b1001 || Op_Code == 4'b1010 || Op_Code == 4'b1111)
+		if(Op_Code == 4'b1001 || Op_Code == 4'b1010 || Op_Code == 4'b1111 || Op_Code == 4'b0100 || Op_Code == 4'b1101 || Op_Code == 4'b1110)
 			Controll_Signals_register[10] <= 0;
 		else 
 			Controll_Signals_register[10] <= 1;	

@@ -1,0 +1,105 @@
+module IDStage(clk , rest , HD_Mux_Sel ,  MemResult_In , PCPluse2_In , FrezeIFID_SH , FlushIFID_SH , FrezeIFID_HD , IDEXOp_Code , CompareFlag , Hi , Lo , SR , WriteRegister , RegWrite , WriteData ,
+		  brTaken_Out, Jump , Branch ,HD_Rd , HD_Rt , IDEXOp_Code_Out ,Last_Controll_Signal ,Source1 , Read1 , Source2, JumpAddress ,BranchAddress , Rd , Rt );
+
+
+	input clk , rest , HD_Mux_Sel , FrezeIFID_SH , FlushIFID_SH , FrezeIFID_HD , CompareFlag , RegWrite ;
+	input [3:0] IDEXOp_Code , WriteRegister;
+	input [15:0] MemResult_In , PCPluse2_In , Hi , Lo , SR , WriteData ;
+	output brTaken_Out , Jump , Branch;
+	output [3:0] HD_Rd , HD_Rt , IDEXOp_Code_Out , Rd , Rt ;
+	output [15:0] Last_Controll_Signal , Source1 , Read1 , Source2 , JumpAddress ,BranchAddress ;
+
+
+	wire FlushIFID , brTaken , SR_Flag , FrezeIFID ; 
+	wire [15:0] IFIDSource_Out , IFIDPCPlus2_Out , Controll_Signals , ReadData2 , ReadData1 , BA , sign_extended_out , Shift_Out , ShiftLeft_Creat_Address_Out; 
+	assign FlushIFID = Controll_Signals[0] || brTaken || FlushIFID_SH ;
+	assign FrezeIFID = FrezeIFID_SH || FrezeIFID_HD ;
+
+	assign Branch = Controll_Signals[6] ;
+	IF2ID_register IF2ID_register (
+		.clk(clk),
+		.rest(rest),
+		.Flush(FlushIFID),
+		.Freze(FrezeIFID),
+		.Source_In(MemResult_In),
+		.PCPlus2_In(PCPluse2_In),
+		.Source_Out(IFIDSource_Out),
+		.PCPlus2_Out(IFIDPCPlus2_Out));
+	//creat jump and branch address
+	ShiftLeft ShiftLeft_Creat_Address(
+		.rest(rest),
+		.A(IFIDSource_Out),
+		.Out(ShiftLeft_Creat_Address_Out));
+	assign JumpAddress[13:0] = ShiftLeft_Creat_Address_Out[13:0] ; 
+	assign JumpAddress[15:14] = IFIDPCPlus2_Out [15:14];
+	assign BranchAddress = ShiftLeft_Creat_Address_Out + IFIDPCPlus2_Out ;
+
+	Controller Controller(
+		.Op_Code(IFIDSource_Out[15:12]),
+		.Controll_Signals(Controll_Signals));
+
+	assign Jump = Controll_Signals[0] ; 
+	assign IDEXOp_Code_Out = IFIDSource_Out[15:12] ;
+
+	BranchTaken BranchTaken(
+		.rest(rest),
+		.IDEXOp_Code(IDEXOp_Code),
+		.CompareFlag(CompareFlag),
+		.SR_Flag(SR_Flag),
+		.Branch(Controll_Signals[6]),
+		.brTaken(brTaken));
+
+	assign brTaken_Out=brTaken ;
+
+	assign Rd = IFIDSource_Out[11:8];
+	assign Rt = IFIDSource_Out[7:4];
+
+	RegisterFile RegisterFile(
+		.ReadRegister1(IFIDSource_Out[11:8]),
+		.ReadRegister2(IFIDSource_Out[7:4]),
+		.WriteRegister(WriteRegister),
+		.WriteData(WriteData),
+		.Hi(Hi),
+		.Lo(Lo),
+		.SR(SR),
+		.RegWrite(RegWrite),
+		.clk(clk),
+		.rest(rest),
+		.SR_Flag(SR_Flag),
+		.ReadData1(ReadData1),
+		.ReadData2(ReadData2),
+		.BA(BA));
+	assign Read1=ReadData1;
+
+	//address for jump and branch
+
+	Mux2to1 Controll_Signals_Out(
+		.A(Controll_Signals),
+		.B(16'b0000000000000000),
+		.Sel(HD_Mux_Sel),
+		.Out(Last_Controll_Signal));
+
+	Mux2to1 Source1_Out(
+		.A(BA),
+		.B(ReadData1),
+		.Sel(Controll_Signals[15]),
+		.Out(Source1));
+
+	Signextend Signextend(
+		.rest(rest),
+		.extend(Controll_Signals[7:0]),
+		.extended(sign_extended_out));
+
+	ShiftLeft ShiftLeft(
+		.rest(rest),
+		.A(sign_extended_out),
+		.Out(Shift_Out));
+
+	Mux3to1 Source2_Out(
+		.A(ReadData2),
+		.B(Shift_Out),
+		.C(sign_extended_out),
+		.Sel(Controll_Signals[14:13]),
+		.Out(Source2));
+
+endmodule 
