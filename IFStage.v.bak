@@ -8,7 +8,7 @@ module IFStage(clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFr
 	wire SourceOfMemSel , Freza;
 	assign SourceOfMemSel = MemWrite || MemRead ;
 	assign Adder_Out = AddressPlus2 ;
-	assign Freze = PowerFrezePC_SH || ((PCFreze_SH || PCFreze_HD) && !Jump && !brTaken)) ;
+	assign Freze = PowerFrezePC_SH || ((PCFreze_SH || PCFreze_HD) && !Jump && !brTaken) ;
 
 	Mux2to1 BranchOrPC (
 		.A(brAddress),

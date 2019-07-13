@@ -1,7 +1,12 @@
-module Mips_Processor(clk , rest , MemResult_Out );
+module Mips_Processor(clk , rest , Adderss_Of_Mem_Out , MemResult_Out , Register_File_Read1_Out 
+			, Register_File_Read2_Out , IDStage_Controll_Signal , Hi_Out , Lo_Out , SR_Out , EXStageAluResult_Out_Or_Mem_Out
+			,MemStage_WriteDataForMemory_Out , WBStageDataForRegFile_Out , WBSatgeRegWrite_Out , WBStageAddresOfWriteRegister_Out);
 
 	input clk , rest ;
-	output [15:0] MemResult_Out ; 
+	output WBSatgeRegWrite_Out ; 
+	output [3:0] WBStageAddresOfWriteRegister_Out ;
+	output [15:0] Adderss_Of_Mem_Out , MemResult_Out ,Register_File_Read1_Out , Register_File_Read2_Out , IDStage_Controll_Signal , Hi_Out , Lo_Out , SR_Out , EXStageAluResult_Out_Or_Mem_Out
+			,MemStage_WriteDataForMemory_Out , WBStageDataForRegFile_Out; 
 	
 	//IFStage
 	wire PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFreze_HD , MemRead , MemWrite ; 
@@ -28,15 +33,27 @@ module Mips_Processor(clk , rest , MemResult_Out );
 
  
 	//output
-	//assign MemResult_Out = MemResult;
-	//assign Read1_Out = Source1 ; 
-	//assign Read2_Out = Source2 ; 
-	//assign WriteDataReg_Out = WriteData ; 
-	//assign  WriteRegister_Out = WriteRegister ; 
-	//assign WriteDataForMem_Out ;
+	//IFStageOutput
+	assign MemResult_Out = MemResult;
+	//IDStage Output
+	assign Register_File_Read1_Out = Source1 ; 
+	assign Register_File_Read2_Out = Source2 ; 
+	assign IDStage_Controll_Signal = Last_Controll_Signal ; 
+	//EXStage Output
+	assign Hi_Out = Hi ; 
+	assign  Lo_Out = Lo ; 
+	assign SR_Out = SR ;
+	assign EXStageAluResult_Out_Or_Mem_Out= AluResult_Out_Or_Mem ; 
+	//MemStageOutput
+	assign MemStage_WriteDataForMemory_Out = WriteDataForMemory ;
+	//WBStageOutput
+	assign WBStageDataForRegFile_Out = WriteData ; 
+	assign WBSatgeRegWrite_Out = RegWrite ;
+	assign WBStageAddresOfWriteRegister_Out= WriteRegister ; 
 
-
-
+	//output from mem input from IF :memread memwrite 
+	assign MemRead = MemStageControl_Signals_Out[12] ;
+	assign MemWrite = MemStageControl_Signals_Out[11] ;
 	IFStage IFStage(
 		.clk(clk),
 		.rest(rest),
@@ -52,7 +69,8 @@ module Mips_Processor(clk , rest , MemResult_Out );
 		.WriteData(WriteDataForMemory),
 		.Address2(Address2),
 		.MemResult(MemResult),
-		.AddressPlus2(AddressPlus2));
+		.AddressPlus2(AddressPlus2),
+		.Adderss_Of_Mem_Out(Adderss_Of_Mem_Out));
 
 
 	IDStage IDStage(

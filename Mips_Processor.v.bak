@@ -18,7 +18,7 @@ module Mips_Processor(clk , rest , MemResult_Out );
 	wire [3:0] WBStageRd , MEMStageRd , EXStageRd , EXStageRt;
 	wire [15:0] Controll_Signals_Out , AluResult_Out_Or_Mem;
 	//Structure
-	wire FrezeMEMWB ; 
+
 	//MemStage
 	wire MemStageRegWrite , SpecialChangeEXMEM ;
 	wire [3:0] MemStageRd_Out ;

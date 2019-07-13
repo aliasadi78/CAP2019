@@ -1,14 +1,15 @@
-module IFStage(clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFreze_HD , brAddress  , JumpAddress , MemRead , MemWrite , WriteData , Address2 , MemResult , AddressPlus2);
+module IFStage(clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFreze_HD , brAddress  , JumpAddress , MemRead , MemWrite , WriteData , Address2 , MemResult , AddressPlus2 ,Adderss_Of_Mem_Out);
 	
 	input clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFreze_HD , MemRead , MemWrite ;
 	input [15:0] brAddress  , JumpAddress , WriteData , Address2 ;
-	output [15:0] MemResult , AddressPlus2 ;
+	output [15:0] MemResult , AddressPlus2 , Adderss_Of_Mem_Out;
 
 	wire [15:0] Adder_Out , BranchOrPC_Out , PCAddress , PC_Out , MemAddress ;
 	wire SourceOfMemSel , Freza;
 	assign SourceOfMemSel = MemWrite || MemRead ;
 	assign Adder_Out = AddressPlus2 ;
 	assign Freze = PowerFrezePC_SH || ((PCFreze_SH || PCFreze_HD) && !Jump && !brTaken) ;
+	assign Adderss_Of_Mem_Out = MemAddress ; 
 
 	Mux2to1 BranchOrPC (
 		.A(brAddress),

@@ -1,8 +1,7 @@
-module n_bit_adder(A, B, Out , Status);
+module n_bit_adder(A, B, Out);
 	parameter n = 16;
 	input [n - 1 : 0] A, B;
 	output [n - 1 : 0] Out;
-	output [15:0] Status;
 
 	reg [15:0] status;
 	wire Carry_Out;
@@ -11,7 +10,6 @@ module n_bit_adder(A, B, Out , Status);
 	wire [16:0] tmp;
 	reg [15:0] Alu_result;
 
-assign Status = status;
 assign tmp = {1'b0,A} + {1'b0,B};
 assign carry = tmp[16];
 	genvar i;
@@ -25,27 +23,7 @@ assign carry = tmp[16];
 		end
 		assign Carry_out = Carry[n - 1];
 	endgenerate
-always @(A or B or Out)
-	begin
-		status[13] <= carry;
-		Alu_result <= A + B;
-		if(A > 0 & B < 0)
-			begin
-				status[12] <= 0;
-			end
-		if(A < 0 & B > 0)
-			begin
-				status[12] <= 0;
-			end
-		if(A > 0 & B > 0 & Alu_result[15] == 1)
-			begin
-				status[12] <= 1;
-			end
-		if(A < 0 & B < & Alu_result[15] == 0)
-			begin
-				status[12] <= 1;
-			end
-	end
+
 endmodule
 
 module half_adder(X, Y, Sum, Carry);

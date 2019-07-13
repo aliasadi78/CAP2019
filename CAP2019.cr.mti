@@ -12,21 +12,34 @@ Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 Top level modules:
 	WBStage
 
-} {} {}} C:/Users/asus/Desktop/CAP2019/adder16bit.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/adder16bit.v
-Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
--- Compiling module adder16bit
--- Compiling module half_adder
--- Compiling module full_adder
-
-Top level modules:
-	adder16bit
-
 } {} {}} C:/Users/asus/Desktop/CAP2019/Hazard_Detection_Unit.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Hazard_Detection_Unit.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 -- Compiling module Hazard_Detection_Unit
 
 Top level modules:
 	Hazard_Detection_Unit
+
+} {} {}} C:/Users/asus/Desktop/CAP2019/Memory.v {2 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Memory.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Memory
+** Warning: C:/Users/asus/Desktop/CAP2019/Memory.v(35): (vlog-2182) 'Instruction_Data_Memory' might be read before written in always_comb or always @* block.
+
+Top level modules:
+	Memory
+
+} {} {}} C:/Users/asus/Desktop/CAP2019/shiftleft.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/shiftleft.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module ShiftLeft
+
+Top level modules:
+	ShiftLeft
+
+} {} {}} C:/Users/asus/Desktop/CAP2019/EXStage.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/EXStage.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module EXStage
+
+Top level modules:
+	EXStage
 
 } {} {}} C:/Users/asus/Desktop/CAP2019/IDStage.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/IDStage.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
@@ -42,21 +55,6 @@ Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 Top level modules:
 	Mux_3to1
 
-} {} {}} C:/Users/asus/Desktop/CAP2019/shiftleft.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/shiftleft.v
-Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
--- Compiling module ShiftLeft
-
-Top level modules:
-	ShiftLeft
-
-} {} {}} C:/Users/asus/Desktop/CAP2019/Memory.v {2 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Memory.v
-Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
--- Compiling module Memory
-** Warning: C:/Users/asus/Desktop/CAP2019/Memory.v(30): (vlog-2182) 'Instruction_Data_Memory' might be read before written in always_comb or always @* block.
-
-Top level modules:
-	Memory
-
 } {} {}} C:/Users/asus/Desktop/CAP2019/StructureHazard_unit.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/StructureHazard_unit.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 -- Compiling module StructureHazard_Unit
@@ -64,19 +62,26 @@ Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 Top level modules:
 	StructureHazard_Unit
 
-} {} {}} C:/Users/asus/Desktop/CAP2019/Mux4t01.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Mux4t01.v
-Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
--- Compiling module Mux_4to1
-
-Top level modules:
-	Mux_4to1
-
 } {} {}} C:/Users/asus/Desktop/CAP2019/IFStage.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/IFStage.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 -- Compiling module IFStage
 
 Top level modules:
 	IFStage
+
+} {} {}} C:/Users/asus/Desktop/CAP2019/MemStage.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/MemStage.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module MemStage
+
+Top level modules:
+	MemStage
+
+} {} {}} C:/Users/asus/Desktop/CAP2019/Mux4t01.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Mux4t01.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Mux_4to1
+
+Top level modules:
+	Mux_4to1
 
 } {} {}} C:/Users/asus/Desktop/CAP2019/Forwarding.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Forwarding.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
@@ -106,6 +111,13 @@ Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 Top level modules:
 	Comparator
 
+} {} {}} C:/Users/asus/Desktop/CAP2019/Mips_Processor.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Mips_Processor.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module Mips_Processor
+
+Top level modules:
+	Mips_Processor
+
 } {} {}} C:/Users/asus/Desktop/CAP2019/Mux2to1.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/Mux2to1.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 -- Compiling module Mux2to1
@@ -120,19 +132,19 @@ Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 Top level modules:
 	ID2EX_Register
 
+} {} {}} C:/Users/asus/Desktop/CAP2019/signextend.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/signextend.v
+Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
+-- Compiling module signExtend
+
+Top level modules:
+	signExtend
+
 } {} {}} C:/Users/asus/Desktop/CAP2019/BranchTaken.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/BranchTaken.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
 -- Compiling module BranchTaken
 
 Top level modules:
 	BranchTaken
-
-} {} {}} C:/Users/asus/Desktop/CAP2019/signextend.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/signextend.v
-Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
--- Compiling module Signextend
-
-Top level modules:
-	Signextend
 
 } {} {}} C:/Users/asus/Desktop/CAP2019/MEM2WB.v {1 {vlog -work work -vopt -stats=none C:/Users/asus/Desktop/CAP2019/MEM2WB.v
 Model Technology ModelSim SE-64 vlog 10.5 Compiler 2016.02 Feb 13 2016
