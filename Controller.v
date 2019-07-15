@@ -7,6 +7,9 @@ module Controller( Op_Code, Controll_Signals);
 
 	assign Controll_Signals = Controll_Signals_register;
 
+	initial begin 
+		Controll_Signals_register <= 0 ;
+	end
 	always @(Op_Code) begin
 		if(Op_Code == 4'b0001 || Op_Code == 4'b0100 || Op_Code == 4'b0111 || Op_Code == 4'b1000 || Op_Code == 4'b1001 || Op_Code == 4'b1010)
 			Controll_Signals_register[15] <= 1;
@@ -84,6 +87,6 @@ module Controller( Op_Code, Controll_Signals);
 		if (Op_Code == 4'b1111)
 			Controll_Signals_register[0] <=1 ;
 		else 
-			Controll_Signals_register <= 0 ;
+			Controll_Signals_register[0] <= 0 ;
 	end 
 endmodule 

@@ -1,32 +1,113 @@
-module ALU(A, B, OP, BA, Out, Carry_out,Mem_out);
+module ALU (A, B, Op, result, Hi, Low, Status);
 	input [15:0] A, B;
-	input [3:0] OP;
-	input BA;
-	output Mem_out;
-	output [15:0] Out;
-	output Carry_out;
-
-	reg [15:0] alu_result;
+	input [2:0] Op;
+	output [15:0] result, Hi, Low, Status;
+	
+	reg [15:0] Alu_result;
+	reg [15:0] hi, low;
+	reg [31:0] mul_result;
+	reg [15:0] sub_result;
+	reg [15:0] status;
 	wire [16:0] tmp;
+	
 
-assign Out = alu_result;
+assign result = Alu_result;
+assign Hi = hi;
+assign Low = low;
+assign Status = status;
 assign tmp = {1'b0,A} + {1'b0,B};
-assign Carry_out = tmp[8];
+assign carry = tmp[16];
 
-always @(*)
+
+always @(A, B, result, Hi, Low, Status)
 	begin
-		case(OP)
-			4'b0000 : alu_result = A + B;
-			4'b0001 : alu_result = A + (BA + (2 * B));
-			4'b0010 : alu_result = A - B;
-			4'b0011 : alu_result = A + (2 * B);
-			4'b0100 : alu_result = A * B;
-			4'b0101 : alu_result = A & B;
-			4'b0110 : alu_result = A << B;
-			4'b0111 : alu_result = BA + (2 * B);
-			//4'b0100 : alu_result = A * B;
+		status[13] <= carry;
+		case(Op)
+			3'b000: Alu_result <= 0;
+			3'b001:
+				begin
+					Alu_result <= A + B;
+					if(A > 0 & B < 0)
+						begin
+							status[12] <= 0;
+						end
+					if(A < 0 & B > 0)
+						begin
+							status[12] <= 0;
+						end
+					if(A > 0 & B > 0 & Alu_result[15] == 1)
+						begin
+							status[12] <= 1;
+						end
+					if(A < 0 & B < & Alu_result[15] == 0)
+						begin
+							status[12] <= 1;
+						end
+				end
+			
+			3'b010: 
+				begin
+					Alu_result <= A - B;
+					if(A > 0 & B > 0)
+						begin
+							status[12] <= 0;
+						end
+					if(A < 0 & B < 0)
+						begin
+							status[12] <= 0;
+						end
+					if(A < 0 & B > 0 & Alu_result[15] == 0)
+						begin
+							status[12] <= 1;
+						end
+					if(A > 0 & B < & Alu_result[15] == 1)
+						begin
+							status[12] <= 1;
+						end
+				end
+			3'b011: Alu_result <= A & B;
+			3'b100: Alu_result <= B;
+			3'b101: Alu_result <= A << B;
+			3'b110: 
+				begin
+				mul_result <= A * B;
+				hi <= mul_result[31:16];
+				low <= mul_result[15:0];
+				end
+			3'b111: 
+				begin
+					sub_result <= A - B;
+					if(A > 0 & B > 0)
+						begin
+							status[12] <= 0;
+						end
+					if(A < 0 & B < 0)
+						begin
+							status[12] <= 0;
+						end
+					if(A < 0 & B > 0 & Alu_result[15] == 0)
+						begin
+							status[12] <= 1;
+						end
+					if(A > 0 & B < & Alu_result[15] == 1)
+						begin
+							status[12] <= 1;
+						end
+
+					if(sub_result == 0)
+						begin
+							status[15] <= 1;
+						end
+					else if (sub_result < 0)
+						begin
+							status[14] <= 1;
+						end
+					else
+						begin
+				 			status[15] <= 0;
+							status[14] <= 0;
+				 		end
+				end
 		endcase
 	end
 endmodule 
-
-			

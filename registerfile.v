@@ -1,7 +1,7 @@
-module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, Hi , Lo , SR, RegWrite, clk, rst, SR_Flag , ReadData1, ReadData2 , BA);
-	input [4:0] ReadRegister1, ReadRegister2, WriteRegister;
+module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, Hi , Lo , SR, RegWrite, clk, rest, SR_Flag , ReadData1, ReadData2 , BA);
+	input [3:0] ReadRegister1, ReadRegister2, WriteRegister;
 	input [15:0] WriteData , Hi , Lo , SR ;
-	input RegWrite, clk, rst;
+	input RegWrite, clk, rest;
 	output SR_Flag ;
 	output [15:0] ReadData1, ReadData2 , BA;
 	
@@ -12,15 +12,24 @@ module RegisterFile(ReadRegister1, ReadRegister2, WriteRegister, WriteData, Hi ,
 	assign ReadData2 = ReadData2_register ; 
 	assign BA = BA_register ;
 	reg [15:0] Registers [15:0];
-
+integer i;
+initial begin
+	for (i = 0 ; i < 16 ; i = i+1) begin 
+		Registers [i] <= 0 ;
+	end
+end
 always @(posedge clk)
 	begin	
-		Registers[12] <= Hi ;
-		Registers[13] <= Lo ;
-		Registers[9] <= SR ;
-		if (RegWrite == 1 && WriteRegister != 0 && WriteRegister != 12 && WriteRegister != 13 && WriteRegister !=9) 
-		begin
-			Registers[WriteRegister] <= WriteData;
+		if (rest) begin 
+			for (i = 0 ; i < 16 ; i = i+1) begin 
+				Registers [i] <= 0 ;
+			end
+		end else begin 
+			Registers[12] <= Hi ;
+			Registers[13] <= Lo ;
+			Registers[9] <= SR ;
+			if (RegWrite == 1 && WriteRegister != 0 && WriteRegister != 12 && WriteRegister != 13 && WriteRegister !=9) 
+				Registers[WriteRegister] <= WriteData;
 		end
 	end
 	

@@ -7,7 +7,7 @@ module IFStage(clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFr
 	wire [15:0] Adder_Out , BranchOrPC_Out , PCAddress , PC_Out , MemAddress ;
 	wire SourceOfMemSel , Freza;
 	assign SourceOfMemSel = MemWrite || MemRead ;
-	assign Adder_Out = AddressPlus2 ;
+	assign AddressPlus2 = Adder_Out ;
 	assign Freze = PowerFrezePC_SH || ((PCFreze_SH || PCFreze_HD) && !Jump && !brTaken) ;
 	assign Adderss_Of_Mem_Out = MemAddress ; 
 
@@ -30,7 +30,8 @@ module IFStage(clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFr
 		.PC_Out(PC_Out),
 		.Freze(Freze));
 
-	adder16bit IFAdder(
+	Adder16bit IFAdder(
+		.rest(rest),
 		.A(16'b0000000000000010),
 		.B(PC_Out),
 		.Out(Adder_Out));
@@ -46,6 +47,6 @@ module IFStage(clk , rest , PowerFrezePC_SH , PCFreze_SH , brTaken , Jump , PCFr
 		.Mem_Address(MemAddress),
 		.Mem_Read(MemRead),
 		.Mem_Write(MemWrite),
-		.Write_data(WriteData),
+		.Write_Data(WriteData),
 		.Result(MemResult));
 endmodule 

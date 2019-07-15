@@ -26,7 +26,6 @@ module WBStage(clk , rest , Freze , Adder_In , Alu_In , Memory_In , Rd_In , Cont
 	assign RegWrite = Controll_Signal_Out[10];
 
 	Mux3to1 WriteDataRegFile_Mux(
-		.rest(rest),
 		.A(Add_Result_Out),
 		.B(Alu_Result_Out),
 		.C(Mem_Result_Out),

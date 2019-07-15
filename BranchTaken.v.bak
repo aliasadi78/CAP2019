@@ -11,12 +11,12 @@ module BranchTaken(rest , IDEXOp_Code , CompareFlag , SR_Flag , Branch , brTaken
 			brTaken_register <= 0 ;
 		end else begin 
 			if (IDEXOp_Code == 4'b1101) begin 
-				if(Branch && CompareFlag)
+				if(Branch && !CompareFlag)
 					brTaken_register <=1 ;
 				else
 					brTaken_register <= 0 ;
 			end else begin 
-				if(Branch && SR_Flag)
+				if(Branch && !SR_Flag)
 					brTaken_register <=1 ;
 				else
 					brTaken_register <= 0 ;

@@ -1,5 +1,5 @@
-module PC(clk , rest , PC_In , PC_Out , Freze , Jump , brTaken);
-	input clk , rest , Freze , Jump , brTaken ;
+module PC(clk , rest , PC_In , PC_Out , Freze);
+	input clk , rest , Freze;
 	input [15:0] PC_In ;
 	output [15:0] PC_Out ;
 	
@@ -9,14 +9,10 @@ module PC(clk , rest , PC_In , PC_Out , Freze , Jump , brTaken);
 	always @(posedge clk) begin 
 		if (rest == 0)
 			PC_Out_register <= 0 ;
-		else begin 
-			if (Jump || brTaken)
+		else 
+			if (!Freze)
 				PC_Out_register <= PC_In ; 
-			else begin 
-				if (!Freze)
-					PC_Out_register <= PC_In ; 
-			end 
-		end
+
 	end 
 
 endmodule 

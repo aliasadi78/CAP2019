@@ -8,7 +8,7 @@ module MemStage(clk , rest , SpecialChangeEXMEM , Controll_Signal_In , Read1_In 
 
 
 
-	adder16bit adder16bit(
+	Adder16bit adder16bit(
 		.rest(rest),
 		.A(Read1_In),
 		.B(AluOrMem_In),

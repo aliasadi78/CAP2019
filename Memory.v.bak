@@ -12,18 +12,24 @@ module Memory ( rest ,Mem_Address , Mem_Read , Mem_Write , Write_Data , Result);
 
 	reg [7:0] Instruction_Data_Memory[0:4095];  // 4095 register of 8-bit(1_BYT) for instruction & data memory: 0:1023 for instruction and 1024:4095 for data
 
- 
-initial begin
 integer i;
-integer j ;
-reg [15:0] instrmem [1023:0] ; 
-$readmemb ("input.txt" , instrmem );
-for (i = 0 ; i < 1023 ; i = i+1)
-	begin 
-		Instruction_Data_Memory[j] <= instrmem [i][15:8] ; 
-		Instruction_Data_Memory [j+1] <= instrmem[i][7:0] ; 
-		j = j + 2 ;
-	end 
+integer j = 0 ;  
+initial begin
+Instruction_Data_Memory [0] <= 8'b00001000;
+Instruction_Data_Memory [1] <= 8'b00010000 ;
+Instruction_Data_Memory [2] <= 8'b00100011 ; 
+Instruction_Data_Memory [3] <= 8'b00010000;
+Instruction_Data_Memory [4] <= 8'b10100011 ;
+Instruction_Data_Memory [5] <= 8'b00000011 ;
+Instruction_Data_Memory [6] <= 8'b00010011;
+Instruction_Data_Memory [7] <= 8'b00010000 ;
+Instruction_Data_Memory [8] <= 8'00001011 ;
+Instruction_Data_Memory [9] <= 8'b00000000 ;
+
+for (i = 1024; i < 4096; i = i + 1)
+	begin
+		Instruction_Data_Memory[i] <= 0;
+	end
 end
 
 // posetive edge clock

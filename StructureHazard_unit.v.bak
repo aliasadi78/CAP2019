@@ -1,15 +1,16 @@
-module StructureHazard_Unit(rest , LWi , SWi , Add ,MemRead , MemWrite , ControllSignals , AluResultMux , FrezePC , FrezeIFID , FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB);
+module StructureHazard_Unit(rest , LWi , SWi , Add ,MemRead , MemWrite , ControllSignals , AluResultMux , PowerFrezePC , FrezePC , FrezeIFID , FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB);
 
 	input rest , LWi , SWi , Add , MemRead , MemWrite ; 
 	output [1:0] ControllSignals ; 
-	output AluResultMux , FrezePC , FrezeIFID, FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB ; 
+	output AluResultMux , PowerFrezePC , FrezePC , FrezeIFID, FlushIFID , FrezeIDEX , SpecialChangeEXMEM , FrezeMEMWB ; 
 
 
 	reg [1:0] ControllSignals_register ; 
-	reg AluResultMux_register , FrezePC_register , FrezeIFID_register , FlushIFID_register , FrezeIDEX_register , SpecialChangeEXMEM_register , FrezeMEMWB_register ;
+	reg AluResultMux_register , PowerFrezePC_register , FrezePC_register , FrezeIFID_register , FlushIFID_register , FrezeIDEX_register , SpecialChangeEXMEM_register , FrezeMEMWB_register ;
 
 	assign ControllSignals = ControllSignals_register ; 
 	assign AluResultMux = AluResultMux_register ;
+	assign PowerFrezePC = PowerFrezePC_register ;
 	assign FrezePC = FrezePC_register ; 
 	assign FrezeIFID = FrezeIFID_register ;
 	assign FlushIFID = FlushIFID_register ;
@@ -37,12 +38,15 @@ module StructureHazard_Unit(rest , LWi , SWi , Add ,MemRead , MemWrite , Control
 
 		if (LWi || SWi || Add) begin 
 			AluResultMux_register <= 0 ;
+			//for lwi in mem and branch in id , if branch in id and lw in mem : pc should be change 
+			PowerFrezePC_register <=1 ;
 			FrezePC_register <= 1 ;
 			FrezeIFID_register <= 1 ;
 			FrezeIDEX_register <= 1 ;
 			SpecialChangeEXMEM_register <= 1 ;
 			FrezeMEMWB_register <=1 ;
 		end else begin 
+			PowerFrezePC_register <=0 ;
 			AluResultMux_register <= 1 ;
 			FrezePC_register <= 0 ;
 			FrezeIFID_register <= 0 ;

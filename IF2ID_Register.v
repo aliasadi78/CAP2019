@@ -6,7 +6,10 @@ module IF2ID_Register(clk , rest , Flush , Freze ,Source_In ,Source_Out , PCPlus
 	reg [15:0] Source_Out_register , PCPlus2_Out_register ;
 	assign Source_Out = Source_Out_register ;
 	assign PCPlus2_Out = PCPlus2_Out_register ;
-
+	initial begin
+Source_Out_register <= 0 ;
+			PCPlus2_Out_register <= 0 ;
+	end
 	always @(posedge clk)begin 
 		if (rest) begin 
 			Source_Out_register <= 0 ;

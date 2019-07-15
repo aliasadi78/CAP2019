@@ -16,7 +16,7 @@ module IDStage(clk , rest , HD_Mux_Sel ,  MemResult_In , PCPluse2_In , FrezeIFID
 	assign FrezeIFID = FrezeIFID_SH || FrezeIFID_HD ;
 
 	assign Branch = Controll_Signals[6] ;
-	IF2ID_register IF2ID_register (
+	IF2ID_Register IF2ID_Register (
 		.clk(clk),
 		.rest(rest),
 		.Flush(FlushIFID),
@@ -28,8 +28,8 @@ module IDStage(clk , rest , HD_Mux_Sel ,  MemResult_In , PCPluse2_In , FrezeIFID
 	//creat jump and branch address
 	ShiftLeft ShiftLeft_Creat_Address(
 		.rest(rest),
-		.A(IFIDSource_Out),
-		.Out(ShiftLeft_Creat_Address_Out));
+		.in(IFIDSource_Out),
+		.out(ShiftLeft_Creat_Address_Out));
 	assign JumpAddress[13:0] = ShiftLeft_Creat_Address_Out[13:0] ; 
 	assign JumpAddress[15:14] = IFIDPCPlus2_Out [15:14];
 	assign BranchAddress = ShiftLeft_Creat_Address_Out + IFIDPCPlus2_Out ;
@@ -90,10 +90,10 @@ module IDStage(clk , rest , HD_Mux_Sel ,  MemResult_In , PCPluse2_In , FrezeIFID
 		.extend(Controll_Signals[7:0]),
 		.extended(sign_extended_out));
 
-	ShiftLeft ShiftLeft(
+	ShiftLeft ShiftLeft2(
 		.rest(rest),
-		.A(sign_extended_out),
-		.Out(Shift_Out));
+		.in(sign_extended_out),
+		.out(Shift_Out));
 
 	Mux3to1 Source2_Out(
 		.A(ReadData2),

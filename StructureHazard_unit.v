@@ -17,8 +17,15 @@ module StructureHazard_Unit(rest , LWi , SWi , Add ,MemRead , MemWrite , Control
 	assign FrezeIDEX = FrezeIDEX_register ; 
 	assign SpecialChangeEXMEM = SpecialChangeEXMEM_register ;
 	assign FrezeMEMWB = FrezeMEMWB_register ; 
-
-	always @(rest or LWi or SWi or Add or MemRead or MemWrite) begin 
+	initial begin 
+		ControllSignals_register <= 3 ;
+		AluResultMux_register <= 1 ;
+		FrezePC_register <= 0 ;
+		FrezeIFID_register <= 0 ;
+		FrezeIDEX_register <= 0 ;
+		SpecialChangeEXMEM_register <= 0 ;
+		FrezeMEMWB_register <= 0 ;
+	end	always @(rest or LWi or SWi or Add or MemRead or MemWrite) begin 
 	if (rest) begin 
 		ControllSignals_register <= 3 ;
 		AluResultMux_register <= 1 ;

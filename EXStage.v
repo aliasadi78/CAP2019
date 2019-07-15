@@ -13,13 +13,13 @@ module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , O
 	wire [15:0] Controll_Signals_wire , Source1_wire , Source2_wire , AluSource1 , AluSource2 , AluResult ;
 	assign EXStageMemRead = Controll_Signals_wire [12] ; 
 	assign EXStageMemWite = Controll_Signals_wire [11] ;
-	ID2EX_Reister(
+	ID2EX_Register ID2EX_Register(
 		.clk(clk),
 		.rest(rest),
 		.Freze(FrezeIDEX_SH),
-		.Controll_Signals_In(Controll_Signals_In),
+		.Controll_Signal_In(Controll_Signals_In),
 		.OpCode_In(OpCode_In),
-		.Sourc1_In(Sourc1_In),
+		.Source1_In(Sourc1_In),
 		.Read1_In(Read1_In),
 		.Source2_In(Source2_In),
 		.Rd_In(Rd_In),
@@ -53,7 +53,7 @@ module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , O
 		.Sel(ForwardB_In),
 		.Out(AluSource2));
 
-	Compare Compare(
+	Comparator Compare(
 		.A(AluSource1),
 		.B(AluSource2),
 		.Out(CompareFlag));
@@ -61,7 +61,7 @@ module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , O
 	ALU ALU(
 		.A(AluSource1),
 		.B(AluSource2),
-		.OP(Controll_Signals_wire[9:7]),
+		.Op(Controll_Signals_wire[9:7]),
 		.result(AluResult),
 		.Hi(Hi),
 		.Low(Lo),

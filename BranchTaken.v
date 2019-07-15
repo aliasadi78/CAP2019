@@ -5,7 +5,9 @@ module BranchTaken(rest , IDEXOp_Code , CompareFlag , SR_Flag , Branch , brTaken
 
 	reg brTaken_register ;
 	assign brTaken = brTaken ;
-
+	initial begin
+		brTaken_register <= 0 ;
+	end
 	always @(rest or CompareFlag or SR_Flag or IDEXOp_Code) begin 
 		if (rest) begin 
 			brTaken_register <= 0 ;

@@ -19,6 +19,7 @@ module IF2ID_Register(clk , rest , Flush , Freze ,Source_In ,Source_Out , PCPlus
 				end else begin 
 					Source_Out_register <= Source_In ;
 					PCPlus2_Out_register <= PCPlus2_In ;
+				end
 			end
 		end
 	end

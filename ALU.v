@@ -19,7 +19,7 @@ assign tmp = {1'b0,A} + {1'b0,B};
 assign carry = tmp[16];
 
 
-always @(A, B, result, Hi, Low, Status)
+always @(A or B)
 	begin
 		status[13] <= carry;
 		case(Op)

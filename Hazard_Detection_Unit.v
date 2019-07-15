@@ -1,7 +1,7 @@
 module Hazard_Detection_Unit(rest , MemRead , RegWrite , Branch , Jump , IFID_Rs , IFID_Rt , IDEX_Rd , ControllSignal , FrezeIFID , FrezePC);
 
 	input rest , MemRead , RegWrite , Branch , Jump ;
-	input [15:0] IFID_Rs , IFID_Rt , IDEX_Rd ;
+	input [3:0] IFID_Rs , IFID_Rt , IDEX_Rd ;
 	output ControllSignal , FrezeIFID , FrezePC ;
 
 	reg ControllSignal_register , FrezeIFID_register , FrezePC_register ;
@@ -9,6 +9,11 @@ module Hazard_Detection_Unit(rest , MemRead , RegWrite , Branch , Jump , IFID_Rs
 	assign FrezeIFID = FrezeIFID_register ;
 	assign FrezePC = FrezePC_register ;
 
+	initial begin 
+			ControllSignal_register <= 1 ;
+			FrezeIFID_register <= 0 ;
+			FrezePC_register <= 0 ;
+	end
 	always @(rest or MemRead or RegWrite) begin 
 		if(rest) begin 
 			ControllSignal_register <= 1 ;

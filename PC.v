@@ -5,7 +5,9 @@ module PC(clk , rest , PC_In , PC_Out , Freze);
 	
 	reg [15:0] PC_Out_register ;
 	assign PC_Out = PC_Out_register ; 
-
+	initial begin
+	PC_Out_register <= 0 ;
+	end
 	always @(posedge clk) begin 
 		if (rest == 0)
 			PC_Out_register <= 0 ;

@@ -11,7 +11,12 @@ module MEM2WB_register(clk , rest , Freze , Controll_Signal_In ,  Add_Result_In 
 	assign Alu_Result_Out =Alu_Result_Out_register ;
 	assign Rd_Out = Rd_Out_register ;
 
-
+	initial begin
+	Add_Result_Out_register <= 0 ;
+			Mem_Result_Out_register <= 0 ;
+			Alu_Result_Out_register <= 0 ; 
+			Rd_Out_register <= 0 ;
+	end
 	always@(posedge clk) begin 
 		if (rest) begin 
 			Add_Result_Out_register <= 0 ;

@@ -1,8 +1,18 @@
-module Mips_Processor(clk , rest , Adderss_Of_Mem_Out , MemResult_Out , Register_File_Read1_Out 
+`timescale 1ns/1ns
+module Mips_Processor( rest , Adderss_Of_Mem_Out , MemResult_Out , Register_File_Read1_Out 
 			, Register_File_Read2_Out , IDStage_Controll_Signal , Hi_Out , Lo_Out , SR_Out , EXStageAluResult_Out_Or_Mem_Out
 			,MemStage_WriteDataForMemory_Out , WBStageDataForRegFile_Out , WBSatgeRegWrite_Out , WBStageAddresOfWriteRegister_Out);
-
-	input clk , rest ;
+	reg clk ;
+        integer clk_tgl_period = 1000;
+        integer timeout = 15000;    
+        initial begin
+            clk <= '0;
+            forever #(clk_tgl_period) clk = ~clk;
+        end
+        initial begin
+            #(timeout) $finish ; 
+        end
+	input rest ;
 	output WBSatgeRegWrite_Out ; 
 	output [3:0] WBStageAddresOfWriteRegister_Out ;
 	output [15:0] Adderss_Of_Mem_Out , MemResult_Out ,Register_File_Read1_Out , Register_File_Read2_Out , IDStage_Controll_Signal , Hi_Out , Lo_Out , SR_Out , EXStageAluResult_Out_Or_Mem_Out
@@ -96,7 +106,7 @@ module Mips_Processor(clk , rest , Adderss_Of_Mem_Out , MemResult_Out , Register
 		.PCPluse2_In(AddressPlus2),
 		.Hi(Hi),
 		.Lo(Lo),
-		.SR(Sr),
+		.SR(SR),
 		.WriteData(WriteData),
 		.Last_Controll_Signal(Last_Controll_Signal),
 		.Source1(Source1),
@@ -132,7 +142,7 @@ module Mips_Processor(clk , rest , Adderss_Of_Mem_Out , MemResult_Out , Register
 		.Controll_Signals_In(Last_Controll_Signal),
 		.Sourc1_In(Source1),
 		.Source2_In(Source2),
-		.Read1_In(Read1_In),
+		.Read1_In(Read1),
 		.Rd_In(IDStageRd),
 		.Rt_In(IDStageRt),
 		.Mem_In(MemResult),
@@ -198,7 +208,7 @@ module Mips_Processor(clk , rest , Adderss_Of_Mem_Out , MemResult_Out , Register
 		.clk(clk),
 		.rest(rest),
 		.Freze(FrezeMEMWB),
-		.Adde_In(MemStageAdder_Out),
+		.Adder_In(MemStageAdder_Out),
 		.Alu_In(MemStageAlu_Out),
 		.Memory_In(MemResult),
 		.Rd_In(MemStageRd_Out),

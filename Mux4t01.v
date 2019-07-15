@@ -7,10 +7,10 @@ module Mux_4to1(A, B, C, D , Sel, Out);
 always @(Sel or A or B or C or D)
 	begin
 		case(Sel)
-			2'b11: Out_register = A;
-			2'b10: Out_register = B;
-			2'b01: Out_register = C;
-			2'b00: Out_register = D;
+			2'b11: Out_register <= A;
+			2'b10: Out_register <= B;
+			2'b01: Out_register <= C;
+			2'b00: Out_register <= D;
 		endcase
 	end
 endmodule 

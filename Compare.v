@@ -3,7 +3,7 @@ module Comparator(A, B, Out);
 	output Out;
 	reg out;
 assign Out = out;
-always @(A or B or Out)
+always @(A or B)
 	begin
 		if(A == B)
 			begin

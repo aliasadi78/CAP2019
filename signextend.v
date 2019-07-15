@@ -3,8 +3,8 @@ module signExtend (in, out);
   output [15:0] out;
   reg [15:0] Out;
 assign out = Out;
-always @(in or out)
+always @(in)
 	begin
-		assign Out = (in[7] == 1) ? {8'b11111111, in} : {8'b00000000, in};
+		Out <= (in[7] == 1) ? {8'b11111111, in} : {8'b00000000, in};
 	end
 endmodule 

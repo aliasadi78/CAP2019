@@ -1,11 +1,11 @@
-module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , OpCode_In, EXMEMRd , MEMWBRd , Sourc1_In , Source2_In , Read1_In , Rd_In , Rt_In , Mem_In , EXStageMemRead , EXStageMemWite,
+module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , OpCode_In, EXMEMData , MEMWBData , Sourc1_In , Source2_In , Read1_In , Rd_In , Rt_In , Mem_In , EXStageMemRead , EXStageMemWite,
 		 Controll_Signals_Sel_In , Alu_Resulr_Sel_In , ForwardA_In , ForwardB_In ,Controll_Signals_Out , AluResult_Out , Read1_Out , Rd_Out , Rt_Out , Hi , Lo , SR, OpCode_Out);
 
 
 	input clk , rest , Alu_Resulr_Sel_In , FrezeIDEX_SH ; 
 	input [1:0] ForwardA_In , ForwardB_In , Controll_Signals_Sel_In ; 
 	input [3:0] OpCode_In , Rd_In , Rt_In ; 
-	input [15:0] Controll_Signals_In , Sourc1_In , Source2_In , Read1_In , Mem_In , EXMEMRd , MEMWBRd ;
+	input [15:0] Controll_Signals_In , Sourc1_In , Source2_In , Read1_In , Mem_In , EXMEMData , MEMWBData ;
 	output CompareFlag , EXStageMemRead , EXStageMemWite;
 	output [3:0] OpCode_Out , Rd_Out , Rt_Out ;
 	output [15:0] Controll_Signals_Out , AluResult_Out , Read1_Out , Hi , Lo , SR ; 
@@ -13,11 +13,11 @@ module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , O
 	wire [15:0] Controll_Signals_wire , Source1_wire , Source2_wire , AluSource1 , AluSource2 , AluResult ;
 	assign EXStageMemRead = Controll_Signals_wire [12] ; 
 	assign EXStageMemWite = Controll_Signals_wire [11] ;
-	ID2EX_Reister(
+	ID2EX_Register ID2EX_Register(
 		.clk(clk),
 		.rest(rest),
 		.Freze(FrezeIDEX_SH),
-		.Controll_Signals_In(Controll_Signals_In),
+		.Controll_Signal_In(Controll_Signals_In),
 		.OpCode_In(OpCode_In),
 		.Sourc1_In(Sourc1_In),
 		.Read1_In(Read1_In),
@@ -41,19 +41,19 @@ module EXStage(clk , rest , CompareFlag , FrezeIDEX_SH , Controll_Signals_In , O
 
 	Mux3to1 Source1_Mux(
 		.A(Source1_wire),
-		.B(MEMWBRd),
-		.C(EXMEMRd),
+		.B(MEMWBData),
+		.C(EXMEMData),
 		.Sel(ForwardA_In),
 		.Out(AluSource1));
 
 	Mux3to1 Source2_Mux(
 		.A(Source2_wire),
-		.B(MEMWBRd),
-		.C(EXMEMRd),
+		.B(MEMWBData),
+		.C(EXMEMData),
 		.Sel(ForwardB_In),
 		.Out(AluSource2));
 
-	Compare Compare(
+	Comparator Compare(
 		.A(AluSource1),
 		.B(AluSource2),
 		.Out(CompareFlag));
